@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Portfolio Website</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{% static 'CSS/style.css' %}">
+</head>
+<body>
+
+    <header class="navbar">
+        <a href="#" class="logo"> My Portfolio.</a>
+        <ul>
+            <li class="active"><a href="home.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="skills.html">Skills</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="projects.html">My Projects</a></li>
+        </ul> 
+    </header>
+    <section class="home">
+        <div class="home-info">
+            <h1>Hi, I'm Rudranil Goswami</h1>
+            <h2>
+                <span style="--i:4;" data-text="Python Developer">Python Developer</span>
+                <span style="--i:3;" data-text="Backend Developer">Backend Developer</span>
+                <span style="--i:2;" data-text="Technical Blogger">Technical Blogger</span>
+                <span style="--i:1;" data-text="Designer">Designer</span>
+            </h2>
+            <p>Hi I am Rudranil Goswami I am a Python full Stack Developer and I have working experience in python and advance Java I have also worked with Flask and currently I am seeking opportunity to grow as Django Developer . I have the capability to adapt the situation and fast learning . 
+                I have a very good amount of problem solving skills . My aspiration to grow as Python Full Stack developer and contributing impactful and innovative solution to the industry</p>
+            <div class="btn-sci">
+                <a href="{% static 'files/Resume.pdf' %}" class="btn">Download CV</a>
+                <div class="sci">
+                    <a href="https://github.com/rudra00434"><i class='bx bxl-github'></i></a>
+                    <a href="https://www.linkedin.com/in/rudranil-goswami-a33340298"><i class='bx bxl-linkedin'></i></a>
+                    <a href="https://www.instagram.com/rudranil.goswami_18?igsh=ZWNtaHN4cnUxYzly"><i class='bx bxl-instagram'></i></a>
+                    <a href="https://x.com/NilTatai77986"><i class='bx bxl-twitter'></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="home-img">
+            <div class="img-box">
+                <div class="img-item">
+                    <img src="{% static 'image/Rudra.jpeg' %}" alt="Profile"> </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="bars-animation">
+        <div class="bar" style="--i:6;"></div>
+        <div class="bar" style="--i:5;"></div>
+        <div class="bar" style="--i:4;"></div>
+        <div class="bar" style="--i:3;"></div>
+        <div class="bar" style="--i:2;"></div>
+        <div class="bar" style="--i:1;"></div>
+    </div>
+
+</body>
+</html> 

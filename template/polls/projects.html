@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Projects | Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% load static %}
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(120deg, #0f172a, #020617);
+            color: white;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 60px;
+            backdrop-filter: blur(12px);
+            background: rgba(0,0,0,0.3);
+            position: sticky;
+            top: 0;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 15px;
+        }
+
+        .navbar a:hover {
+            color: #00f7ff;
+        }
+
+        /* HEADER */
+        .projects-section {
+            padding: 80px 60px;
+            text-align: center;
+        }
+
+        .projects-title {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        .projects-title span {
+            background: linear-gradient(90deg,#00f7ff,#7c3aed);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .subtitle {
+            color: #94a3b8;
+            font-size: 16px;
+        }
+
+        /* GRID */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 35px;
+            margin-top: 60px;
+        }
+
+        /* CARD */
+        .project-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 22px;
+            padding: 35px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: 0.4s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 0 30px rgba(0,247,255,0.6);
+        }
+
+        .project-icon {
+            font-size: 40px;
+            color: #00f7ff;
+            margin-bottom: 15px;
+        }
+
+        .project-tech {
+            font-size: 13px;
+            color: #38bdf8;
+            margin: 15px 0;
+        }
+
+        .project-btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 22px;
+            border-radius: 30px;
+            background: linear-gradient(90deg,#00f7ff,#7c3aed);
+            color: black;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .project-btn:hover {
+            background: white;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #64748b;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <h2>My <span style="color:#00f7ff;">Portfolio</span></h2>
+    <div>
+        <a href="/">Home</a>
+        <a href="/skills/">Skills</a>
+        <a href="/projects/">Projects</a>
+        <a href="/contact/">Contact</a>
+    </div>
+</div>
+
+<section class="projects-section">
+    <h1 class="projects-title">Featured <span>Projects</span></h1>
+    <p class="subtitle">Real-world intelligent systems & scalable applications</p>
+
+    <div class="project-grid">
+
+        <div class="project-card">
+            <i class="fas fa-heartbeat project-icon"></i>
+            <h3>PharmFast</h3>
+            <p class="project-tech">JSP • MySQL • Servlet • JDBC</p>
+            <p>Online medical system with inventory, prescription tracking and secure authentication.</p>
+            <a href="https://github.com/rudra00434/PharmaFast_Online_Medic_System.git" target="_blank" class="project-btn">View Code</a>
+        </div>
+
+        <div class="project-card">
+            <i class="fas fa-brain project-icon"></i>
+            <h3>AI Smart Task Assistant</h3>
+            <p class="project-tech">Python • Flask • LangChain</p>
+            <p>AI assistant that predicts deadlines and optimizes productivity workflows.</p>
+            <a href="https://github.com/rudra00434/Smart_AI_Powered_Task_Buddy.git" target="_blank" class="project-btn">View Code</a>
+        </div>
+
+        <div class="project-card">
+            <i class="fas fa-chart-line project-icon"></i>
+            <h3>EcomCRM</h3>
+            <p class="project-tech">Django • SQLite • Chart.js • BootStrap 5</p>
+            <p>Intelligent customer analytics and performance dashboards for e-commerce businesses.</p>
+            <a href="https://github.com/rudra00434/EcomCRM.git" target="_blank" class="project-btn">View Code</a>
+        </div>
+
+        <div class="project-card">
+            <i class="fas fa-code project-icon"></i>
+            <h3>CodeNova</h3>
+            <p class="project-tech">Python • LangChain • Groq LLM </p>
+            <p>AI powered developer tool for bug detection, documentation and smart suggestions.</p>
+            <a href="https://github.com/rudra00434/CodeNova.Devs.git" target="_blank" class="project-btn">View Code</a>
+        </div>
+
+    </div>
+</section>
+
+<footer>
+    © 2026 Your Name • Built with Django
+</footer>
+
+</body>
+</html>

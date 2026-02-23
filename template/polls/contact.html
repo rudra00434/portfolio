@@ -37,6 +37,22 @@
             overflow-x: hidden;
         }
 
+        /* --- MOBILE MENU ICON --- */
+        #menu-icon {
+            font-size: 2.5rem;
+            color: var(--main-color);
+            display: none; /* Hidden on desktop */
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 10001;
+            cursor: pointer;
+            background: var(--second-bg-color);
+            border-radius: 8px;
+            padding: 5px 10px;
+            box-shadow: 0 0 10px rgba(0, 238, 255, 0.2);
+        }
+
         /* --- SIDEBAR --- */
         .sidebar {
             width: 260px;
@@ -49,6 +65,7 @@
             align-items: center;
             border-right: 2px solid rgba(255, 255, 255, 0.1);
             z-index: 1000;
+            transition: .5s ease;
         }
 
         .profile-img {
@@ -86,11 +103,13 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
+            transition: .5s ease;
         }
 
         .contact-header {
             text-align: center;
             margin-bottom: 40px;
+            width: 100%;
         }
         .contact-header h2 { 
             font-size: 4rem; 
@@ -106,6 +125,7 @@
             grid-template-columns: 1fr 1fr;
             gap: 40px;
             width: 100%;
+            max-width: 1200px;
         }
 
         /* --- LEFT SIDE: INFO --- */
@@ -135,7 +155,7 @@
         }
 
         .info-box h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: 5px; }
-        .info-box p { font-size: 1rem; color: #cbd5f5; }
+        .info-box p { font-size: 1rem; color: #cbd5f5; word-break: break-all; }
 
         .social-links { margin-top: 20px; }
         .social-links a {
@@ -170,10 +190,12 @@
             display: flex;
             flex-direction: column;
             gap: 20px;
+            width: 100%;
         }
 
         .input-box {
             position: relative;
+            width: 100%;
         }
 
         .input-box input, .input-box textarea {
@@ -204,8 +226,10 @@
             font-weight: 600;
             cursor: pointer;
             transition: .5s ease;
-            width: 150px;
+            width: 100%;
+            max-width: 200px;
             text-align: center;
+            align-self: flex-start;
         }
 
         .btn:hover {
@@ -218,6 +242,7 @@
         /* --- MAP --- */
         .map-container {
             width: 100%;
+            max-width: 1200px;
             height: 250px;
             margin-top: 40px;
             border-radius: 15px;
@@ -236,16 +261,63 @@
         @keyframes slideTop { 0% { transform: translateY(100px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
         @keyframes slideBottom { 0% { transform: translateY(-100px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
 
-        /* --- RESPONSIVE --- */
-        @media (max-width: 992px) {
-            .contact-container { grid-template-columns: 1fr; }
-            .content { padding: 40px 5%; }
-            .contact-header h2 { font-size: 3rem; }
+        /* =========================================
+           MOBILE RESPONSIVENESS (MEDIA QUERIES)
+           ========================================= */
+
+        /* Tablet & Smaller Desktop Screens */
+        @media (max-width: 1024px) {
+            #menu-icon { display: block; }
+            .sidebar { left: -300px; box-shadow: 0 0 20px rgba(0,0,0,0.5); }
+            .sidebar.active { left: 0; }
+            .content {
+                margin-left: 0;
+                width: 100%;
+                padding-top: 100px; 
+            }
+            .contact-header h2 { font-size: 3.5rem; }
+        }
+
+        /* Mobile Phones */
+        @media (max-width: 768px) {
+            .contact-header h2 { font-size: 2.5rem; }
+            .contact-header p { font-size: 1rem; }
+            .content { padding: 80px 5% 40px; }
+            
+            .contact-container { 
+                grid-template-columns: 1fr; /* Stack info and form on mobile */
+                gap: 30px;
+            }
+            
+            .info-box i {
+                font-size: 2rem;
+                padding: 12px;
+                margin-right: 15px;
+            }
+            
+            .social-links a {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+
+            .btn {
+                width: 100%; /* Make button full width on small screens */
+                max-width: none;
+            }
+            
+            .map-container {
+                height: 200px;
+            }
         }
     </style>
 </head>
 
 <body>
+
+    <div id="menu-icon">
+        <i class='bx bx-menu'></i>
+    </div>
 
     <div class="sidebar">
         <div class="profile-img">
@@ -330,6 +402,17 @@
         </div>
 
     </div>
+
+    <script>
+        // Mobile Menu Toggle Logic
+        const menuIcon = document.querySelector('#menu-icon i');
+        const sidebar = document.querySelector('.sidebar');
+
+        menuIcon.parentElement.onclick = () => {
+            menuIcon.classList.toggle('bx-x'); 
+            sidebar.classList.toggle('active'); 
+        };
+    </script>
 
 </body>
 </html>

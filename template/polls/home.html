@@ -14,7 +14,7 @@
             --bg-color: #1f242d;
             --second-bg-color: #323946;
             --text-color: #fff;
-            --main-color: #0ef; /* Cyan accent matching your image */
+            --main-color: #0ef; 
             --hover-color: #37b3ac;
         }
 
@@ -34,6 +34,22 @@
             color: var(--text-color);
             display: flex;
             overflow-x: hidden;
+        }
+
+        /* --- MOBILE MENU ICON --- */
+        #menu-icon {
+            font-size: 2.5rem;
+            color: var(--main-color);
+            display: none; /* Hidden on desktop */
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 10001;
+            cursor: pointer;
+            background: var(--second-bg-color);
+            border-radius: 8px;
+            padding: 5px 10px;
+            box-shadow: 0 0 10px rgba(0, 238, 255, 0.2);
         }
 
         /* --- SIDEBAR --- */
@@ -109,6 +125,7 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            transition: .5s ease;
         }
 
         /* --- HERO SECTION --- */
@@ -159,7 +176,6 @@
             animation-delay: 1s;
         }
 
-        /* Social Icons & Buttons */
         .social-media a {
             display: inline-flex;
             justify-content: center;
@@ -220,7 +236,6 @@
             animation-delay: 2s;
         }
 
-        /* The glowing segmented circle */
         .home-img .circle-spin {
             position: absolute;
             width: 100%;
@@ -269,7 +284,7 @@
             text-align: center;
             border: 1px solid rgba(0, 238, 255, 0.1);
             transition: .5s ease;
-            opacity: 0; /* JS handles fade in */
+            opacity: 0; 
             transform: translateY(50px);
         }
 
@@ -338,10 +353,77 @@
             100% { transform: rotate(360deg); }
         }
         
+        /* =========================================
+           MOBILE RESPONSIVENESS (MEDIA QUERIES)
+           ========================================= */
+        
+        /* Tablet & Smaller Desktop Screens */
+        @media (max-width: 1024px) {
+            #menu-icon {
+                display: block; /* Show hamburger icon */
+            }
+            .sidebar {
+                left: -300px; /* Hide sidebar off-screen */
+                box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            }
+            .sidebar.active {
+                left: 0; /* Slide in when active */
+            }
+            .content {
+                margin-left: 0;
+                width: 100%;
+            }
+            .home {
+                flex-direction: column;
+                justify-content: center;
+                padding-top: 120px; /* Space for hamburger menu */
+                padding-bottom: 60px;
+                gap: 50px;
+                text-align: center;
+            }
+            .home-content {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .home-img {
+                width: 320px;
+                height: 320px;
+            }
+        }
+
+        /* Mobile Phones */
+        @media (max-width: 768px) {
+            .home-content h1 {
+                font-size: 42px;
+            }
+            .home-content h3 {
+                font-size: 24px;
+            }
+            .home-img {
+                width: 260px;
+                height: 260px;
+            }
+            .services {
+                padding: 60px 5%;
+            }
+            .services h2 {
+                font-size: 2.2rem;
+            }
+            .footer {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+        }
     </style>
 </head>
 
 <body>
+
+<div id="menu-icon">
+    <i class='bx bx-menu'></i>
+</div>
 
 <div class="sidebar">
     <div class="profile-img">
@@ -367,7 +449,7 @@
             <h1>Rudranil Goswami</h1>
             <h3>And I'm a <span>Full-Stack Developer</span></h3>
             <p>Expert in Django, REST APIs, and building scalable backend systems. 
-               Passionate about turning complex logic into smooth, user-friendly digital experiences. Let's Connect.</p>
+                Passionate about turning complex logic into smooth, user-friendly digital experiences. Let's Connect.</p>
             
             <div class="social-media">
                 <a href="https://www.linkedin.com/in/rudranil-goswami-a33340298" style="--i:7"><i class='bx bxl-linkedin'></i></a>
@@ -421,9 +503,8 @@
 </div>
 
 <script>
-    const cards = document.querySelectorAll('.service-card');
-    
     // Intersection Observer for Scroll Animation
+    const cards = document.querySelectorAll('.service-card');
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry, index) => {
             if(entry.isIntersecting){
@@ -434,9 +515,8 @@
             }
         });
     });
-
     cards.forEach(card => observer.observe(card));
-</script>
 
-</body>
-</html>
+    // Mobile Menu Toggle Logic
+    const menuIcon = document.querySelector('#menu-icon i');
+    const sidebar = document.querySelector('.sidebar');

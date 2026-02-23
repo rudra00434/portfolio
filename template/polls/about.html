@@ -36,6 +36,22 @@
             overflow-x: hidden;
         }
 
+        /* --- MOBILE MENU ICON --- */
+        #menu-icon {
+            font-size: 2.5rem;
+            color: var(--main-color);
+            display: none; 
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 10001;
+            cursor: pointer;
+            background: var(--second-bg-color);
+            border-radius: 8px;
+            padding: 5px 10px;
+            box-shadow: 0 0 10px rgba(0, 238, 255, 0.2);
+        }
+
         /* --- SIDEBAR (Consistent with Home) --- */
         .sidebar {
             width: 260px;
@@ -48,6 +64,7 @@
             align-items: center;
             border-right: 2px solid rgba(255, 255, 255, 0.1);
             z-index: 1000;
+            transition: .5s ease;
         }
 
         .profile-img {
@@ -85,6 +102,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            transition: .5s ease;
         }
 
         .about-wrapper {
@@ -211,16 +229,39 @@
         @keyframes slideTop { 0% { transform: translateY(100px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
         @keyframes slideBottom { 0% { transform: translateY(-100px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
 
-        /* --- RESPONSIVE --- */
-        @media (max-width: 992px) {
-            .about-wrapper { flex-direction: column; text-align: center; }
+        /* =========================================
+           MOBILE RESPONSIVENESS (MEDIA QUERIES)
+           ========================================= */
+        
+        /* Tablet & Smaller Desktop Screens */
+        @media (max-width: 1024px) {
+            #menu-icon { display: block; }
+            .sidebar { left: -300px; box-shadow: 0 0 20px rgba(0,0,0,0.5); }
+            .sidebar.active { left: 0; }
+            .content {
+                margin-left: 0;
+                width: 100%;
+                padding-top: 100px; 
+            }
+            .about-wrapper { flex-direction: column; text-align: center; gap: 2rem;}
             .heading { text-align: center; font-size: 3.5rem; }
+        }
+
+        /* Mobile Phones */
+        @media (max-width: 768px) {
+            .heading { font-size: 2.5rem; }
+            .sub-heading { font-size: 1.2rem; }
             .info-cards { grid-template-columns: 1fr; text-align: left; }
-            .about-img { width: 250px; height: 250px; margin-bottom: 30px; }
+            .about-img { width: 250px; height: 250px; margin-bottom: 10px; }
+            .content { padding: 80px 5% 40px; }
         }
     </style>
 </head>
 <body>
+
+    <div id="menu-icon">
+        <i class='bx bx-menu'></i>
+    </div>
 
     <div class="sidebar">
         <div class="profile-img">
@@ -275,6 +316,17 @@
 
         </div>
     </div>
+
+    <script>
+        // Mobile Menu Toggle Logic
+        const menuIcon = document.querySelector('#menu-icon i');
+        const sidebar = document.querySelector('.sidebar');
+
+        menuIcon.parentElement.onclick = () => {
+            menuIcon.classList.toggle('bx-x'); 
+            sidebar.classList.toggle('active'); 
+        };
+    </script>
 
 </body>
 </html>

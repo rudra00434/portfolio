@@ -38,6 +38,22 @@
             overflow-x: hidden;
         }
 
+        /* --- MOBILE MENU ICON --- */
+        #menu-icon {
+            font-size: 2.5rem;
+            color: var(--main-color);
+            display: none; /* Hidden on desktop */
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 10001;
+            cursor: pointer;
+            background: var(--second-bg-color);
+            border-radius: 8px;
+            padding: 5px 10px;
+            box-shadow: 0 0 10px rgba(0, 238, 255, 0.2);
+        }
+
         /* --- SIDEBAR --- */
         .sidebar {
             width: 260px;
@@ -50,6 +66,7 @@
             align-items: center;
             border-right: 2px solid rgba(255, 255, 255, 0.1);
             z-index: 1000;
+            transition: .5s ease;
         }
 
         .profile-img {
@@ -83,6 +100,7 @@
             width: calc(100% - 260px);
             min-height: 100vh;
             padding: 50px 8%;
+            transition: .5s ease;
         }
 
         .portfolio-header {
@@ -104,7 +122,7 @@
         /* --- PROJECTS GRID --- */
         .project-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Adjusted for mobile scaling */
             gap: 40px;
         }
 
@@ -216,16 +234,59 @@
         @keyframes slideTop { 0% { transform: translateY(100px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
         @keyframes slideBottom { 0% { transform: translateY(-100px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
 
-        /* --- RESPONSIVE --- */
-        @media (max-width: 992px) {
-            .project-grid { grid-template-columns: 1fr; }
-            .content { padding: 40px 5%; }
-            .portfolio-header h1 { font-size: 3rem; }
+        /* =========================================
+           MOBILE RESPONSIVENESS (MEDIA QUERIES)
+           ========================================= */
+        
+        /* Tablet & Smaller Desktop Screens */
+        @media (max-width: 1024px) {
+            #menu-icon {
+                display: block; 
+            }
+            .sidebar {
+                left: -300px; 
+                box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            }
+            .sidebar.active {
+                left: 0; 
+            }
+            .content {
+                margin-left: 0;
+                width: 100%;
+                padding-top: 100px; /* Space so content doesn't hide behind hamburger menu */
+            }
+            .portfolio-header h1 { 
+                font-size: 3.5rem; 
+            }
+        }
+
+        /* Mobile Phones */
+        @media (max-width: 768px) {
+            .portfolio-header h1 { 
+                font-size: 2.5rem; 
+            }
+            .portfolio-header p {
+                font-size: 1rem;
+            }
+            .project-grid { 
+                grid-template-columns: 1fr; /* Stack cards natively on small phones */
+                gap: 30px;
+            }
+            .content { 
+                padding: 80px 5% 40px; 
+            }
+            .project-card {
+                padding: 20px;
+            }
         }
     </style>
 </head>
 
 <body>
+
+    <div id="menu-icon">
+        <i class='bx bx-menu'></i>
+    </div>
 
     <div class="sidebar">
         <div class="profile-img">
@@ -251,86 +312,3 @@
         </div>
 
         <div class="project-grid">
-
-            <div class="project-card" style="--i:1">
-                <div>
-                    <i class="fas fa-heartbeat card-icon"></i>
-                    <h3>PharmaFast</h3>
-                    <p class="description">
-                        A secure online medical system for inventory management, prescription tracking, and user authentication.
-                    </p>
-                    <div class="tech-stack">
-                        <span class="tech-badge">JSP</span>
-                        <span class="tech-badge">MySQL</span>
-                        <span class="tech-badge">Servlet</span>
-                        <span class="tech-badge">JDBC</span>
-                    </div>
-                </div>
-                <a href="https://github.com/rudra00434/PharmaFast_Online_Medic_System.git" target="_blank" class="btn-link">
-                    View Code <i class='bx bxl-github'></i>
-                </a>
-            </div>
-
-            <div class="project-card" style="--i:2">
-                <div>
-                    <i class="fas fa-brain card-icon"></i>
-                    <h3>AI Smart Task Assistant</h3>
-                    <p class="description">
-                        An AI-powered assistant that predicts deadlines, organizes schedules, and optimizes workflow productivity.
-                    </p>
-                    <div class="tech-stack">
-                        <span class="tech-badge">Python</span>
-                        <span class="tech-badge">Flask</span>
-                        <span class="tech-badge">LangChain</span>
-                    </div>
-                </div>
-                <a href="https://github.com/rudra00434/Smart_AI_Powered_Task_Buddy.git" target="_blank" class="btn-link">
-                    View Code <i class='bx bxl-github'></i>
-                </a>
-            </div>
-
-            <div class="project-card" style="--i:3">
-                <div>
-                    <i class="fas fa-chart-line card-icon"></i>
-                    <h3>EcomCRM</h3>
-                    <p class="description">
-                        A comprehensive CRM for e-commerce, featuring intelligent customer analytics and interactive performance dashboards.
-                    </p>
-                    <div class="tech-stack">
-                        <span class="tech-badge">Django</span>
-                        <span class="tech-badge">SQLite</span>
-                        <span class="tech-badge">Chart.js</span>
-                    </div>
-                </div>
-                <a href="https://github.com/rudra00434/EcomCRM.git" target="_blank" class="btn-link">
-                    View Code <i class='bx bxl-github'></i>
-                </a>
-            </div>
-
-            <div class="project-card" style="--i:4">
-                <div>
-                    <i class="fas fa-code card-icon"></i>
-                    <h3>CodeNova</h3>
-                    <p class="description">
-                        An AI developer tool leveraging Groq LLM for real-time bug detection, auto-documentation, and code suggestions.
-                    </p>
-                    <div class="tech-stack">
-                        <span class="tech-badge">Python</span>
-                        <span class="tech-badge">LangChain</span>
-                        <span class="tech-badge">Groq LLM</span>
-                    </div>
-                </div>
-                <a href="https://github.com/rudra00434/CodeNova.Devs.git" target="_blank" class="btn-link">
-                    View Code <i class='bx bxl-github'></i>
-                </a>
-            </div>
-
-        </div>
-
-        <div class="footer">
-            <p>&copy; 2026 Rudranil Goswami | Build with Django</p>
-        </div>
-    </div>
-
-</body>
-</html>

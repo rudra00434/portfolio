@@ -17,7 +17,7 @@
             --second-bg-color: #323946;
             --text-color: #fff;
             --main-color: #0ef;
-            --bar-bg: #2b323f;
+            --card-bg: rgba(50, 57, 70, 0.5); /* Glass effect */
         }
 
         * {
@@ -38,6 +38,22 @@
             overflow-x: hidden;
         }
 
+        /* --- MOBILE MENU ICON --- */
+        #menu-icon {
+            font-size: 2.5rem;
+            color: var(--main-color);
+            display: none; 
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 10001;
+            cursor: pointer;
+            background: var(--second-bg-color);
+            border-radius: 8px;
+            padding: 5px 10px;
+            box-shadow: 0 0 10px rgba(0, 238, 255, 0.2);
+        }
+
         /* --- SIDEBAR --- */
         .sidebar {
             width: 260px;
@@ -50,6 +66,7 @@
             align-items: center;
             border-right: 2px solid rgba(255, 255, 255, 0.1);
             z-index: 1000;
+            transition: .5s ease;
         }
 
         .profile-img {
@@ -63,7 +80,6 @@
         }
 
         .profile-img img { width: 100%; height: 100%; object-fit: cover; }
-
         .sidebar h3 { font-size: 1.5rem; font-weight: 600; margin-bottom: 5px; }
         .sidebar p { font-size: 14px; color: var(--main-color); margin-bottom: 30px; font-weight: 500; }
 
@@ -84,6 +100,7 @@
             width: calc(100% - 260px);
             min-height: 100vh;
             padding: 50px 8%;
+            transition: .5s ease;
         }
 
         .skills-header {
@@ -97,107 +114,175 @@
             opacity: 0;
             animation: slideBottom 1s ease forwards;
         }
-        .skills-header h1 span { color: var(--main-color); }
+        .skills-header h1 span { color: var(--main-color); text-shadow: 0 0 10px var(--main-color); }
         .skills-header p {
             font-size: 1.2rem; color: #cbd5f5;
             opacity: 0; animation: slideTop 1s ease forwards; animation-delay: .3s;
         }
 
-        /* --- SKILLS CONTAINER --- */
+        /* --- MODERN SKILLS GRID --- */
         .skills-container {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
         }
 
         .skill-category h3 {
-            font-size: 1.8rem;
-            margin-bottom: 25px;
-            text-align: center;
-            color: var(--main-color);
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #fff;
+            border-bottom: 2px solid var(--main-color);
+            display: inline-block;
+            padding-bottom: 5px;
             opacity: 0;
             animation: slideRight 1s ease forwards;
             animation-delay: .5s;
         }
 
-        /* --- SKILL BARS --- */
-        .skill-box {
-            background: var(--second-bg-color);
-            padding: 20px;
-            border-radius: 15px;
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 25px;
+        }
+
+        /* --- STUNNING CARDS --- */
+        .skill-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(0, 238, 255, 0.1);
-            margin-bottom: 20px;
-            transition: .4s;
+            border-radius: 20px;
+            padding: 30px 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
             opacity: 0;
-            animation: slideLeft 1s ease forwards;
-            animation-delay: calc(.2s * var(--i));
+            transform: translateY(30px);
         }
 
-        .skill-box:hover {
-            transform: translateY(-5px);
+        /* Subtle glowing orb inside the card */
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0,238,255,0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 0;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
             border-color: var(--main-color);
-            box-shadow: 0 0 15px rgba(0, 238, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 238, 255, 0.15);
+            background: rgba(50, 57, 70, 0.8);
         }
 
-        .skill-info {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
+        .skill-card:hover::before {
+            opacity: 1;
         }
 
-        .skill-info h4 {
-            display: flex;
-            align-items: center;
-            font-size: 1.1rem;
-            font-weight: 500;
-        }
-
-        .skill-info i {
-            font-size: 24px;
+        .skill-card i {
+            font-size: 4rem;
             color: var(--main-color);
-            margin-right: 10px;
+            margin-bottom: 15px;
+            z-index: 1;
+            transition: transform 0.4s ease, text-shadow 0.4s ease;
         }
 
-        .skill-bar {
-            width: 100%;
-            height: 10px;
-            background: #111;
-            border-radius: 10px;
-            overflow: hidden;
-            position: relative;
+        .skill-card:hover i {
+            transform: scale(1.1);
+            text-shadow: 0 0 15px var(--main-color);
         }
 
-        .skill-bar span {
-            display: block;
-            height: 100%;
-            background: var(--main-color);
-            border-radius: 10px;
-            position: relative;
-            width: 0; /* Animated by JS */
-            transition: width 1.5s ease-in-out;
-            box-shadow: 0 0 10px var(--main-color);
+        .skill-card span {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-color);
+            z-index: 1;
+            letter-spacing: 0.5px;
         }
 
-        /* --- RESPONSIVE --- */
-        @media (max-width: 992px) {
-            .skills-container { grid-template-columns: 1fr; }
-            .skills-header h1 { font-size: 3rem; }
-            .content { padding: 40px 5%; }
+        /* --- FOOTER --- */
+        .footer {
+            margin-top: 80px;
+            text-align: center;
+            padding: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #cbd5f5;
+            font-size: 14px;
         }
 
         /* --- ANIMATIONS --- */
         @keyframes slideRight { 0% { transform: translateX(-100px); opacity: 0; } 100% { transform: translateX(0); opacity: 1; } }
-        @keyframes slideLeft { 0% { transform: translateX(100px); opacity: 0; } 100% { transform: translateX(0); opacity: 1; } }
         @keyframes slideTop { 0% { transform: translateY(100px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
         @keyframes slideBottom { 0% { transform: translateY(-100px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
+        
+        /* JS Triggered Animation */
+        .show-card {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
+        /* =========================================
+           MOBILE RESPONSIVENESS (MEDIA QUERIES)
+           ========================================= */
+        
+        /* Tablet & Smaller Desktop Screens */
+        @media (max-width: 1024px) {
+            #menu-icon { display: block; }
+            .sidebar { left: -300px; box-shadow: 0 0 20px rgba(0,0,0,0.5); }
+            .sidebar.active { left: 0; }
+            .content {
+                margin-left: 0;
+                width: 100%;
+                padding-top: 100px; 
+            }
+            .skills-header h1 { font-size: 3.5rem; }
+        }
+
+        /* Mobile Phones */
+        @media (max-width: 768px) {
+            .skills-header h1 { font-size: 2.5rem; }
+            .skills-header p { font-size: 1rem; }
+            .content { padding: 80px 5% 40px; }
+            .skill-category h3 { font-size: 1.6rem; text-align: center; display: block; margin: 0 auto 30px;}
+            .skill-grid {
+                grid-template-columns: repeat(2, 1fr); /* Force 2 columns on mobile */
+                gap: 15px;
+            }
+            .skill-card {
+                padding: 20px 10px;
+            }
+            .skill-card i {
+                font-size: 3rem;
+            }
+            .skill-card span {
+                font-size: 0.9rem;
+            }
+        }
+        
+        @media (max-width: 400px) {
+             .skill-grid {
+                grid-template-columns: 1fr; /* Switch to 1 column on very tiny phones */
+            }
+        }
     </style>
 </head>
 
 <body>
+
+    <div id="menu-icon">
+        <i class='bx bx-menu'></i>
+    </div>
 
     <div class="sidebar">
         <div class="profile-img">
@@ -218,114 +303,112 @@
     <div class="content">
         
         <div class="skills-header">
-            <h1>My <span>Technical Stack</span></h1>
-            <p>A showcase of my technical proficiency and toolset.</p>
+            <h1>My <span>Tech Arsenal</span></h1>
+            <p>The tools and technologies I use to build scalable systems.</p>
         </div>
 
         <div class="skills-container">
 
             <div class="skill-category">
                 <h3>Languages & Frameworks</h3>
-                
-                <div class="skill-box" style="--i:1">
-                    <div class="skill-info">
-                        <h4><i class='bx bxl-python'></i> Python</h4>
-                        <p>90%</p>
+                <div class="skill-grid">
+                    
+                    <div class="skill-card">
+                        <i class='bx bxl-python'></i>
+                        <span>Python</span>
                     </div>
-                    <div class="skill-bar"><span data-width="90%"></span></div>
-                </div>
 
-                <div class="skill-box" style="--i:2">
-                    <div class="skill-info">
-                        <h4><i class='bx bxl-django'></i> Django</h4>
-                        <p>85%</p>
+                    <div class="skill-card">
+                        <i class='bx bxl-django'></i>
+                        <span>Django</span>
                     </div>
-                    <div class="skill-bar"><span data-width="85%"></span></div>
-                </div>
 
-                <div class="skill-box" style="--i:3">
-                    <div class="skill-info">
-                        <h4><i class='bx bx-server'></i> Flask</h4>
-                        <p>75%</p>
+                    <div class="skill-card">
+                        <i class='bx bx-server'></i>
+                        <span>Flask</span>
                     </div>
-                    <div class="skill-bar"><span data-width="75%"></span></div>
-                </div>
 
-                <div class="skill-box" style="--i:4">
-                    <div class="skill-info">
-                        <h4><i class='bx bxl-c-plus-plus'></i> C++</h4>
-                        <p>80%</p>
+                    <div class="skill-card">
+                        <i class='bx bxl-c-plus-plus'></i>
+                        <span>C++</span>
                     </div>
-                    <div class="skill-bar"><span data-width="80%"></span></div>
-                </div>
 
-                <div class="skill-box" style="--i:5">
-                    <div class="skill-info">
-                        <h4><i class='bx bxl-java'></i> Java</h4>
-                        <p>70%</p>
+                    <div class="skill-card">
+                        <i class='bx bxl-java'></i>
+                        <span>Java</span>
                     </div>
-                    <div class="skill-bar"><span data-width="70%"></span></div>
-                </div>
 
+                </div>
             </div>
 
             <div class="skill-category">
-                <h3>Tools & Platforms</h3>
-                
-                <div class="skill-box" style="--i:6">
-                    <div class="skill-info">
-                        <h4><i class='fa-solid fa-database'></i> MySQL</h4>
-                        <p>85%</p>
+                <h3>Tools & Infrastructure</h3>
+                <div class="skill-grid">
+                    
+                    <div class="skill-card">
+                        <i class='fa-solid fa-database'></i>
+                        <span>MySQL</span>
                     </div>
-                    <div class="skill-bar"><span data-width="85%"></span></div>
-                </div>
 
-                <div class="skill-box" style="--i:7">
-                    <div class="skill-info">
-                        <h4><i class='bx bxl-git'></i> Git & GitHub</h4>
-                        <p>80%</p>
+                    <div class="skill-card">
+                        <i class='bx bxl-git'></i>
+                        <span>Git & GitHub</span>
                     </div>
-                    <div class="skill-bar"><span data-width="80%"></span></div>
-                </div>
 
-                <div class="skill-box" style="--i:8">
-                    <div class="skill-info">
-                        <h4><i class='bx bx-terminal'></i> Linux / Bash</h4>
-                        <p>75%</p>
+                    <div class="skill-card">
+                        <i class='bx bx-terminal'></i>
+                        <span>Linux</span>
                     </div>
-                    <div class="skill-bar"><span data-width="75%"></span></div>
-                </div>
 
-                <div class="skill-box" style="--i:9">
-                    <div class="skill-info">
-                        <h4><i class='bx bx-data'></i> REST APIs</h4>
-                        <p>85%</p>
+                    <div class="skill-card">
+                        <i class='bx bx-data'></i>
+                        <span>REST APIs</span>
                     </div>
-                    <div class="skill-bar"><span data-width="85%"></span></div>
-                </div>
-                 
-                 <div class="skill-box" style="--i:10">
-                    <div class="skill-info">
-                        <h4><i class='bx bx-brain'></i> AI & LLMs (Learning)</h4>
-                        <p>60%</p>
+                     
+                     <div class="skill-card">
+                        <i class='bx bx-brain'></i>
+                        <span>AI & LLMs</span>
                     </div>
-                    <div class="skill-bar"><span data-width="60%"></span></div>
-                </div>
 
+                </div>
             </div>
+
+        </div>
+
+        <div class="footer">
+            <p>&copy; 2026 Rudranil Goswami | Build with Django</p>
         </div>
     </div>
 
     <script>
-        const skillBars = document.querySelectorAll('.skill-bar span');
+        // Mobile Menu Toggle Logic
+        const menuIcon = document.querySelector('#menu-icon i');
+        const sidebar = document.querySelector('.sidebar');
 
-        // Simple animation on load
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                skillBars.forEach(bar => {
-                    bar.style.width = bar.getAttribute('data-width');
-                });
-            }, 500); // Slight delay for the slide-in animation to finish first
+        menuIcon.parentElement.onclick = () => {
+            menuIcon.classList.toggle('bx-x'); 
+            sidebar.classList.toggle('active'); 
+        };
+
+        // Staggered Animation for Cards on Load/Scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if(entry.isIntersecting){
+                    // Find all cards in the intersecting grid
+                    const cards = entry.target.querySelectorAll('.skill-card');
+                    cards.forEach((card, index) => {
+                        setTimeout(() => {
+                            card.classList.add('show-card');
+                        }, index * 100); // 100ms delay between each card
+                    });
+                    observer.unobserve(entry.target); // Only animate once
+                }
+            });
+        }, { threshold: 0.1 });
+
+        // Observe each grid container
+        document.querySelectorAll('.skill-grid').forEach(grid => {
+            observer.observe(grid);
         });
     </script>
 

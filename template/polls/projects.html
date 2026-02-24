@@ -137,9 +137,10 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            opacity: 0;
-            animation: slideTop 1s ease forwards;
-            animation-delay: calc(.2s * var(--i));
+            
+            /* FIXED: Set opacity to 1 so cards are always visible */
+            opacity: 1; 
+            transform: translateY(0);
         }
 
         .project-card:hover {
@@ -312,3 +313,119 @@
         </div>
 
         <div class="project-grid">
+
+            <div class="project-card">
+                <div>
+                    <i class="fas fa-heartbeat card-icon"></i>
+                    <h3>PharmaFast</h3>
+                    <p class="description">
+                        A secure online medical system for inventory management, prescription tracking, and user authentication.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-badge">JSP</span>
+                        <span class="tech-badge">MySQL</span>
+                        <span class="tech-badge">Servlet</span>
+                        <span class="tech-badge">JDBC</span>
+                    </div>
+                </div>
+                <a href="https://github.com/rudra00434/PharmaFast_Online_Medic_System.git" target="_blank" class="btn-link">
+                    View Code <i class='bx bxl-github'></i>
+                </a>
+            </div>
+
+            <div class="project-card">
+                <div>
+                    <i class="fas fa-brain card-icon"></i>
+                    <h3>AI Smart Task Assistant</h3>
+                    <p class="description">
+                        An AI-powered assistant that predicts deadlines, organizes schedules, and optimizes workflow productivity.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-badge">Python</span>
+                        <span class="tech-badge">Flask</span>
+                        <span class="tech-badge">LangChain</span>
+                    </div>
+                </div>
+                <a href="https://github.com/rudra00434/Smart_AI_Powered_Task_Buddy.git" target="_blank" class="btn-link">
+                    View Code <i class='bx bxl-github'></i>
+                </a>
+            </div>
+
+            <div class="project-card">
+                <div>
+                    <i class="fas fa-chart-line card-icon"></i>
+                    <h3>EcomCRM</h3>
+                    <p class="description">
+                        A comprehensive CRM for e-commerce, featuring intelligent customer analytics and interactive performance dashboards.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-badge">Django</span>
+                        <span class="tech-badge">SQLite</span>
+                        <span class="tech-badge">Chart.js</span>
+                    </div>
+                </div>
+                <a href="https://github.com/rudra00434/EcomCRM.git" target="_blank" class="btn-link">
+                    View Code <i class='bx bxl-github'></i>
+                </a>
+            </div>
+
+            <div class="project-card">
+                <div>
+                    <i class="fas fa-code card-icon"></i>
+                    <h3>CodeNova</h3>
+                    <p class="description">
+                        An AI developer tool leveraging Groq LLM for real-time bug detection, auto-documentation, and code suggestions.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-badge">Python</span>
+                        <span class="tech-badge">LangChain</span>
+                        <span class="tech-badge">Groq LLM</span>
+                    </div>
+                </div>
+                <a href="https://github.com/rudra00434/CodeNova.Devs.git" target="_blank" class="btn-link">
+                    View Code <i class='bx bxl-github'></i>
+                </a>
+            </div>
+
+            <div class="project-card">
+                <div>
+                    <i class='bx bxs-music card-icon'></i>
+                    <h3>SoulPlayer</h3>
+                    <p class="description">
+                        A music streaming web app built in Django, featuring integrated NLP for voice search using Spacy and the Web Speech API.
+                        <br/> 
+                        Used YouTube Data API v3 for Trending Podcasts streaming
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-badge">Django</span>
+                        <span class="tech-badge">Spacy NLP</span>
+                        <span class="tech-badge">Web Speech API</span>
+                        <span class="tech-badge">YouTube Data API V3</span>
+                        <span class="tech-badge">JavaScript</span>
+                    </div>
+                </div>
+                <a href="https://github.com/rudra00434/SoulPlayer.git" target="_blank" class="btn-link">
+                    View Code <i class='bx bxl-github'></i>
+                </a>
+            </div>
+
+        </div>
+
+        <div class="footer">
+            <p>&copy; 2026 Rudranil Goswami | Build with Django</p>
+        </div>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle Logic
+        const menuIcon = document.querySelector('#menu-icon i');
+        const sidebar = document.querySelector('.sidebar');
+
+        menuIcon.parentElement.onclick = () => {
+            menuIcon.classList.toggle('bx-x'); // Changes hamburger to an 'X'
+            sidebar.classList.toggle('active'); // Slides sidebar in
+        };
+    </script>
+
+</body>
+</html>

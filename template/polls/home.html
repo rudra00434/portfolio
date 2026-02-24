@@ -520,3 +520,12 @@
     // Mobile Menu Toggle Logic
     const menuIcon = document.querySelector('#menu-icon i');
     const sidebar = document.querySelector('.sidebar');
+
+    menuIcon.parentElement.onclick = () => {
+        menuIcon.classList.toggle('bx-x'); // Changes hamburger to an 'X'
+        sidebar.classList.toggle('active'); // Slides sidebar in
+    };
+</script>
+
+</body>
+</html>
